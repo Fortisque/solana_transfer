@@ -1,0 +1,6 @@
+type Transactions @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  from_address: String!
+  to_address: String!
+  transaction_id: String!
+}
