@@ -1,5 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
-import logo from "./logo.svg";
+import React, { ReactElement, useEffect, useMemo, useState } from "react";
 import "./App.css";
 
 import { Amplify } from "aws-amplify";
@@ -17,109 +16,46 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 import { notEmpty } from "./common_helpers/notEmpty";
+import {
+  Box,
+  CssBaseline,
+  ThemeProvider,
+  createTheme,
+  useMediaQuery,
+} from "@mui/material";
+import { Wallet } from "./components/providers/Wallet";
+import { lightGreen, lightBlue } from "@mui/material/colors";
 Amplify.configure(config);
 
 function App(): ReactElement {
-  const [transactions, setTransactions] = useState<Array<Transactions>>([]);
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
-  async function fetchTransactions() {
-    const apiData = (await API.graphql({
-      query: listTransactions,
-    })) as {
-      data: ListTransactionsQuery;
-    };
-    const transactionsFromAPI = (
-      apiData.data.listTransactions?.items ?? []
-    ).filter(notEmpty);
-    setTransactions(transactionsFromAPI);
-  }
+  // const theme = createTheme({
+  //   palette: {
+  //     primary: lightGreen,
+  //     secondary: lightBlue,
+  //     type: prefersDarkMode ? "dark" : "light",
+  //   },
+  // });
 
-  useEffect(() => {
-    fetchTransactions();
-  }, []);
-
-  async function createTransaction(event: {
-    preventDefault: () => void;
-    target: HTMLFormElement;
-  }) {
-    event.preventDefault();
-    const form = new FormData(event.target);
-    const data = {
-      from_address: form.get("from_address"),
-      to_address: form.get("to_address"),
-      transaction_id: form.get("transaction_id"),
-    };
-    await API.graphql({
-      query: createTransactions,
-      variables: { input: data },
-    });
-    fetchTransactions();
-    event.target.reset();
-  }
-
-  async function deleteTransaction({ id }: { id: string }) {
-    const newTransactions = transactions.filter((note) => note.id !== id);
-    setTransactions(newTransactions);
-    await API.graphql({
-      query: deleteTransactions,
-      variables: { input: { id } },
-    });
-  }
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          primary: lightGreen,
+          secondary: lightBlue,
+          mode: prefersDarkMode ? "dark" : "light",
+        },
+      }),
+    [prefersDarkMode]
+  );
 
   return (
-    <View className="App">
-      <Heading level={1}>My Transactions App</Heading>
-      <View as="form" margin="3rem 0" onSubmit={createTransaction}>
-        <Flex direction="row" justifyContent="center">
-          <TextField
-            name="from_address"
-            placeholder="From Address"
-            label="From Address"
-            labelHidden
-            variation="quiet"
-            required
-          />
-          <TextField
-            name="to_address"
-            placeholder="To Address"
-            label="To Address"
-            labelHidden
-            variation="quiet"
-            required
-          />
-          <TextField
-            name="transaction_id"
-            placeholder="Transaction ID"
-            label="Transaction ID"
-            labelHidden
-            variation="quiet"
-            required
-          />
-          <Button type="submit" variation="primary">
-            Create Note
-          </Button>
-        </Flex>
-      </View>
-      <Heading level={2}>Current Transactions</Heading>
-      <View margin="3rem 0">
-        {transactions.map((transaction) => (
-          <Flex
-            key={transaction.id}
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text as="strong" fontWeight={700}>
-              {transaction.from_address}
-            </Text>
-            <Text as="span">{transaction.to_address}</Text>
-            <Button variation="link" onClick={() => deleteTransaction(transaction)}>
-              Delete note
-            </Button>
-          </Flex>
-        ))}
-      </View>
-    </View>
+    <ThemeProvider theme={theme}>
+      <Wallet />
+      <CssBaseline />
+      <Box height="100vh" display="flex" flexDirection="column"></Box>
+    </ThemeProvider>
   );
 }
 
