@@ -1,8 +1,8 @@
-import { TransferStatus } from "./TransferForm";
 import { Alert, Button, Link } from "@mui/material";
-import { getSolScanTransactionURL } from "../../common_helpers/sol_helpers/getSolScanTransactionURL";
 import { nullThrows } from "../../common_helpers/nullThrows";
+import { getSolScanTransactionURL } from "../../common_helpers/sol_helpers/getSolScanTransactionURL";
 import "../../css/TransferAlertMessage.css";
+import { TransferStatus } from "./TransferForm";
 
 type Props = {
   transferStatus: TransferStatus | null;

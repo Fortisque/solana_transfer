@@ -3,10 +3,10 @@ import {
   WalletContextState,
 } from "@solana/wallet-adapter-react";
 import {
-  SystemProgram,
   LAMPORTS_PER_SOL,
-  Transaction,
   PublicKey,
+  SystemProgram,
+  Transaction,
 } from "@solana/web3.js";
 
 export const transferSol = async (

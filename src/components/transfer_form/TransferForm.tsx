@@ -1,6 +1,3 @@
-import { useMemo, useState, useCallback } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import {
   Card,
   CircularProgress,
@@ -8,21 +5,24 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import "../../css/TransferForm.css";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import { WalletMultiButton } from "@solana/wallet-adapter-material-ui";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { DataStore } from "aws-amplify";
+import { useCallback, useMemo, useState } from "react";
+import { abbreviateWalletPublicKey } from "../../common_helpers/abbreviateWalletPublicKey";
+import { filterNulls } from "../../common_helpers/filterNulls";
+import { nullThrows } from "../../common_helpers/nullThrows";
 import { transferSol } from "../../common_helpers/sol_helpers/transferSol";
+import "../../css/TransferForm.css";
+import { Transfer } from "../../models";
 import {
   getConnectedWalletErrorMessage,
   getRecipientAddressErrorMessage,
   getSolAmountErrorMessage,
 } from "./FormValidationHelpers";
-import { WalletMultiButton } from "@solana/wallet-adapter-material-ui";
-import { filterNulls } from "../../common_helpers/filterNulls";
-import { nullThrows } from "../../common_helpers/nullThrows";
-import { abbreviateLongString } from "../../common_helpers/abbreviateLongString";
 import TransferAlertMessage from "./TransferAlertMessage";
-import { DataStore } from "aws-amplify";
-import { Transfer } from "../../models";
 
 export type TransferStatus = {
   status: "success" | "pending" | "error";
@@ -35,7 +35,7 @@ function TransferForm() {
   const { publicKey } = walletContext;
   const publicKeyString: string | undefined = publicKey?.toString();
   const publicKeyAbbreviation: string | null =
-    publicKeyString != null ? abbreviateLongString(publicKeyString) : null;
+    publicKeyString != null ? abbreviateWalletPublicKey(publicKeyString) : null;
 
   const [didAttemptSend, setDidAttemptSend] = useState<boolean>(false);
   const [recipientAddress, setRecipientAddress] = useState<string | null>(null);

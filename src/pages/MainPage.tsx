@@ -1,6 +1,5 @@
 import React, { ReactElement, useEffect, useMemo, useState } from "react";
 
-import { Amplify } from "aws-amplify";
 import {
   Box,
   CssBaseline,
@@ -9,12 +8,13 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import NavBar from "../components/navigation/NavBar";
-import { WalletProvider } from "./WalletProvider";
+import { Amplify } from "aws-amplify";
 import { useRecoilState } from "recoil";
 import { isDarkThemeAtom } from "../common_helpers/atoms";
+import NavBar from "../components/navigation/NavBar";
 import TransferForm from "../components/transfer_form/TransferForm";
 import TransfersTable from "../components/transfers_table/TransfersTable";
+import { WalletProvider } from "./WalletProvider";
 
 export default function MainPage() {
   const [isDarkThemeAtomValue, setIsDarkTheme] =

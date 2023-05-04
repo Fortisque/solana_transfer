@@ -1,13 +1,13 @@
-import React, { FC, useMemo } from "react";
+import {
+  WalletDialogProvider,
+} from "@solana/wallet-adapter-material-ui";
 import {
   ConnectionProvider,
   WalletProvider as SolanaWalletProvider,
 } from "@solana/wallet-adapter-react";
 import { UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets";
-import {
-  WalletDialogProvider,
-} from "@solana/wallet-adapter-material-ui";
 import { clusterApiUrl } from "@solana/web3.js";
+import React, { FC, useMemo } from "react";
 import { ADAPTER_NETWORK } from "../common_helpers/constants";
 
 type Props = { children?: React.ReactNode };

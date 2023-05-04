@@ -1,5 +1,5 @@
-import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 
 import {
@@ -7,10 +7,10 @@ import {
   WalletMultiButton,
 } from "@solana/wallet-adapter-material-ui";
 
-import "../../css/NavBar.css";
-import LightDarkSwitch from "./LightDarkSwitch";
 import { useRecoilState } from "recoil";
 import { isDarkThemeAtom } from "../../common_helpers/atoms";
+import "../../css/NavBar.css";
+import LightDarkSwitch from "./LightDarkSwitch";
 
 export default function NavBar() {
   const [isDarkTheme] = useRecoilState(isDarkThemeAtom);

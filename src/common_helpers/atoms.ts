@@ -1,4 +1,4 @@
-import { RecoilState, atom, selector } from "recoil";
+import { RecoilState, atom } from "recoil";
 
 export const isDarkThemeAtom: RecoilState<boolean | null> = atom<
   boolean | null
