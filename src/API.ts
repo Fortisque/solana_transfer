@@ -2,23 +2,23 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateTransfersInput = {
+export type CreateTransferInput = {
   id?: string | null,
   from_address: string,
   to_address: string,
   signature: string,
-  amount: number,
+  amount_in_sol: number,
   _version?: number | null,
 };
 
-export type ModelTransfersConditionInput = {
+export type ModelTransferConditionInput = {
   from_address?: ModelStringInput | null,
   to_address?: ModelStringInput | null,
   signature?: ModelStringInput | null,
-  amount?: ModelFloatInput | null,
-  and?: Array< ModelTransfersConditionInput | null > | null,
-  or?: Array< ModelTransfersConditionInput | null > | null,
-  not?: ModelTransfersConditionInput | null,
+  amount_in_sol?: ModelFloatInput | null,
+  and?: Array< ModelTransferConditionInput | null > | null,
+  or?: Array< ModelTransferConditionInput | null > | null,
+  not?: ModelTransferConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -73,13 +73,13 @@ export type ModelFloatInput = {
   attributeType?: ModelAttributeTypes | null,
 };
 
-export type Transfers = {
-  __typename: "Transfers",
+export type Transfer = {
+  __typename: "Transfer",
   id: string,
   from_address: string,
   to_address: string,
   signature: string,
-  amount: number,
+  amount_in_sol: number,
   createdAt: string,
   updatedAt: string,
   _version: number,
@@ -87,29 +87,29 @@ export type Transfers = {
   _lastChangedAt: number,
 };
 
-export type UpdateTransfersInput = {
+export type UpdateTransferInput = {
   id: string,
   from_address?: string | null,
   to_address?: string | null,
   signature?: string | null,
-  amount?: number | null,
+  amount_in_sol?: number | null,
   _version?: number | null,
 };
 
-export type DeleteTransfersInput = {
+export type DeleteTransferInput = {
   id: string,
   _version?: number | null,
 };
 
-export type ModelTransfersFilterInput = {
+export type ModelTransferFilterInput = {
   id?: ModelIDInput | null,
   from_address?: ModelStringInput | null,
   to_address?: ModelStringInput | null,
   signature?: ModelStringInput | null,
-  amount?: ModelFloatInput | null,
-  and?: Array< ModelTransfersFilterInput | null > | null,
-  or?: Array< ModelTransfersFilterInput | null > | null,
-  not?: ModelTransfersFilterInput | null,
+  amount_in_sol?: ModelFloatInput | null,
+  and?: Array< ModelTransferFilterInput | null > | null,
+  or?: Array< ModelTransferFilterInput | null > | null,
+  not?: ModelTransferFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -128,21 +128,21 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type ModelTransfersConnection = {
-  __typename: "ModelTransfersConnection",
-  items:  Array<Transfers | null >,
+export type ModelTransferConnection = {
+  __typename: "ModelTransferConnection",
+  items:  Array<Transfer | null >,
   nextToken?: string | null,
   startedAt?: number | null,
 };
 
-export type ModelSubscriptionTransfersFilterInput = {
+export type ModelSubscriptionTransferFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   from_address?: ModelSubscriptionStringInput | null,
   to_address?: ModelSubscriptionStringInput | null,
   signature?: ModelSubscriptionStringInput | null,
-  amount?: ModelSubscriptionFloatInput | null,
-  and?: Array< ModelSubscriptionTransfersFilterInput | null > | null,
-  or?: Array< ModelSubscriptionTransfersFilterInput | null > | null,
+  amount_in_sol?: ModelSubscriptionFloatInput | null,
+  and?: Array< ModelSubscriptionTransferFilterInput | null > | null,
+  or?: Array< ModelSubscriptionTransferFilterInput | null > | null,
 };
 
 export type ModelSubscriptionIDInput = {
@@ -187,19 +187,19 @@ export type ModelSubscriptionFloatInput = {
   notIn?: Array< number | null > | null,
 };
 
-export type CreateTransfersMutationVariables = {
-  input: CreateTransfersInput,
-  condition?: ModelTransfersConditionInput | null,
+export type CreateTransferMutationVariables = {
+  input: CreateTransferInput,
+  condition?: ModelTransferConditionInput | null,
 };
 
-export type CreateTransfersMutation = {
-  createTransfers?:  {
-    __typename: "Transfers",
+export type CreateTransferMutation = {
+  createTransfer?:  {
+    __typename: "Transfer",
     id: string,
     from_address: string,
     to_address: string,
     signature: string,
-    amount: number,
+    amount_in_sol: number,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -208,19 +208,19 @@ export type CreateTransfersMutation = {
   } | null,
 };
 
-export type UpdateTransfersMutationVariables = {
-  input: UpdateTransfersInput,
-  condition?: ModelTransfersConditionInput | null,
+export type UpdateTransferMutationVariables = {
+  input: UpdateTransferInput,
+  condition?: ModelTransferConditionInput | null,
 };
 
-export type UpdateTransfersMutation = {
-  updateTransfers?:  {
-    __typename: "Transfers",
+export type UpdateTransferMutation = {
+  updateTransfer?:  {
+    __typename: "Transfer",
     id: string,
     from_address: string,
     to_address: string,
     signature: string,
-    amount: number,
+    amount_in_sol: number,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -229,19 +229,19 @@ export type UpdateTransfersMutation = {
   } | null,
 };
 
-export type DeleteTransfersMutationVariables = {
-  input: DeleteTransfersInput,
-  condition?: ModelTransfersConditionInput | null,
+export type DeleteTransferMutationVariables = {
+  input: DeleteTransferInput,
+  condition?: ModelTransferConditionInput | null,
 };
 
-export type DeleteTransfersMutation = {
-  deleteTransfers?:  {
-    __typename: "Transfers",
+export type DeleteTransferMutation = {
+  deleteTransfer?:  {
+    __typename: "Transfer",
     id: string,
     from_address: string,
     to_address: string,
     signature: string,
-    amount: number,
+    amount_in_sol: number,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -250,18 +250,18 @@ export type DeleteTransfersMutation = {
   } | null,
 };
 
-export type GetTransfersQueryVariables = {
+export type GetTransferQueryVariables = {
   id: string,
 };
 
-export type GetTransfersQuery = {
-  getTransfers?:  {
-    __typename: "Transfers",
+export type GetTransferQuery = {
+  getTransfer?:  {
+    __typename: "Transfer",
     id: string,
     from_address: string,
     to_address: string,
     signature: string,
-    amount: number,
+    amount_in_sol: number,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -271,21 +271,21 @@ export type GetTransfersQuery = {
 };
 
 export type ListTransfersQueryVariables = {
-  filter?: ModelTransfersFilterInput | null,
+  filter?: ModelTransferFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
 export type ListTransfersQuery = {
   listTransfers?:  {
-    __typename: "ModelTransfersConnection",
+    __typename: "ModelTransferConnection",
     items:  Array< {
-      __typename: "Transfers",
+      __typename: "Transfer",
       id: string,
       from_address: string,
       to_address: string,
       signature: string,
-      amount: number,
+      amount_in_sol: number,
       createdAt: string,
       updatedAt: string,
       _version: number,
@@ -298,7 +298,7 @@ export type ListTransfersQuery = {
 };
 
 export type SyncTransfersQueryVariables = {
-  filter?: ModelTransfersFilterInput | null,
+  filter?: ModelTransferFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
   lastSync?: number | null,
@@ -306,14 +306,14 @@ export type SyncTransfersQueryVariables = {
 
 export type SyncTransfersQuery = {
   syncTransfers?:  {
-    __typename: "ModelTransfersConnection",
+    __typename: "ModelTransferConnection",
     items:  Array< {
-      __typename: "Transfers",
+      __typename: "Transfer",
       id: string,
       from_address: string,
       to_address: string,
       signature: string,
-      amount: number,
+      amount_in_sol: number,
       createdAt: string,
       updatedAt: string,
       _version: number,
@@ -325,18 +325,18 @@ export type SyncTransfersQuery = {
   } | null,
 };
 
-export type OnCreateTransfersSubscriptionVariables = {
-  filter?: ModelSubscriptionTransfersFilterInput | null,
+export type OnCreateTransferSubscriptionVariables = {
+  filter?: ModelSubscriptionTransferFilterInput | null,
 };
 
-export type OnCreateTransfersSubscription = {
-  onCreateTransfers?:  {
-    __typename: "Transfers",
+export type OnCreateTransferSubscription = {
+  onCreateTransfer?:  {
+    __typename: "Transfer",
     id: string,
     from_address: string,
     to_address: string,
     signature: string,
-    amount: number,
+    amount_in_sol: number,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -345,18 +345,18 @@ export type OnCreateTransfersSubscription = {
   } | null,
 };
 
-export type OnUpdateTransfersSubscriptionVariables = {
-  filter?: ModelSubscriptionTransfersFilterInput | null,
+export type OnUpdateTransferSubscriptionVariables = {
+  filter?: ModelSubscriptionTransferFilterInput | null,
 };
 
-export type OnUpdateTransfersSubscription = {
-  onUpdateTransfers?:  {
-    __typename: "Transfers",
+export type OnUpdateTransferSubscription = {
+  onUpdateTransfer?:  {
+    __typename: "Transfer",
     id: string,
     from_address: string,
     to_address: string,
     signature: string,
-    amount: number,
+    amount_in_sol: number,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -365,18 +365,18 @@ export type OnUpdateTransfersSubscription = {
   } | null,
 };
 
-export type OnDeleteTransfersSubscriptionVariables = {
-  filter?: ModelSubscriptionTransfersFilterInput | null,
+export type OnDeleteTransferSubscriptionVariables = {
+  filter?: ModelSubscriptionTransferFilterInput | null,
 };
 
-export type OnDeleteTransfersSubscription = {
-  onDeleteTransfers?:  {
-    __typename: "Transfers",
+export type OnDeleteTransferSubscription = {
+  onDeleteTransfer?:  {
+    __typename: "Transfer",
     id: string,
     from_address: string,
     to_address: string,
     signature: string,
-    amount: number,
+    amount_in_sol: number,
     createdAt: string,
     updatedAt: string,
     _version: number,

@@ -22,7 +22,7 @@ import { nullThrows } from "../../common_helpers/nullThrows";
 import { abbreviateLongString } from "../../common_helpers/abbreviateLongString";
 import TransferAlertMessage from "./TransferAlertMessage";
 import { DataStore } from "aws-amplify";
-import { Transfers } from "../../models";
+import { Transfer } from "../../models";
 
 export type TransferStatus = {
   status: "success" | "pending" | "error";
@@ -94,11 +94,11 @@ function TransferForm() {
       .then(async (signature) => {
         setTransferStatus({ status: "success", message: signature });
         await DataStore.save(
-          new Transfers({
+          new Transfer({
             from_address: nullThrows(publicKey?.toString()),
             to_address: nullThrows(recipientAddress),
             signature: nullThrows(signature),
-            amount: nullThrows(solAmount),
+            amount_in_sol: nullThrows(solAmount),
           })
         )
           .then((msg) => {
@@ -111,7 +111,7 @@ function TransferForm() {
       .catch((error) => {
         setTransferStatus({ status: "error", message: error.toString() });
       });
-  }, [publicKey, recipientAddress, solAmount]);
+  }, [publicKey, recipientAddress, solAmount, connection, walletContext]);
   return (
     <Card className="transfer-wrapper">
       <Typography color="inherit" variant="h4">
@@ -157,7 +157,7 @@ function TransferForm() {
             const newSolAmount = parseFloat(e.target.value);
             if (!Number.isNaN(newSolAmount)) {
               setSolAmount(newSolAmount);
-            } else if (e.target.value == "") {
+            } else if (e.target.value === "") {
               setSolAmount(null);
             }
           }}
@@ -186,7 +186,7 @@ function TransferForm() {
                 variant="outlined"
                 color="secondary"
                 type="submit"
-                disabled={validationErrorMessages.length != 0}
+                disabled={validationErrorMessages.length !== 0}
               >
                 Send
               </Button>

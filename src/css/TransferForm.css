@@ -1,7 +1,7 @@
 .transfer-wrapper {
   padding: 16px;
   margin: 16px;
-  align-items: start;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 }
@@ -16,11 +16,4 @@
 .transfer-my-wallet {
   display: flex;
   flex-direction: column;
-}
-
-.transfer-alert-message {
-  display: flex;
-  flex-grow: 1;
-  padding-top: 16px;
-  justify-content: center;
 }

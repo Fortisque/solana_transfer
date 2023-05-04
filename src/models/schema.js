@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Transfers": {
-            "name": "Transfers",
+        "Transfer": {
+            "name": "Transfer",
             "fields": {
                 "id": {
                     "name": "id",
@@ -31,8 +31,8 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "amount": {
-                    "name": "amount",
+                "amount_in_sol": {
+                    "name": "amount_in_sol",
                     "isArray": false,
                     "type": "Float",
                     "isRequired": true,
@@ -84,5 +84,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.2",
-    "version": "560561538eaceb1b7e223dc384c7e244"
+    "version": "9c9f34cd6b8b6d2f1dd94deca6d77cbf"
 };

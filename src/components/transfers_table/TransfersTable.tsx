@@ -1,21 +1,15 @@
 import { HelpOutline } from "@mui/icons-material";
 import { Card, Tooltip, Typography } from "@mui/material";
 import "../../css/TransfersTable.css";
-import { API, DataStore } from "aws-amplify";
-import { Transfers } from "../../models";
+import { DataStore } from "aws-amplify";
+import { Transfer } from "../../models";
 import { useEffect, useState } from "react";
-import { listTransfers } from "../../graphql/queries";
-import { ListTransfersQuery } from "../../API";
-import { filterNulls } from "../../common_helpers/filterNulls";
-import { notEmpty } from "../../common_helpers/notEmpty";
 
-type Props = {};
-
-function TransfersTable({}: Props) {
-  const [transfers, setTransfers] = useState<Array<Transfers>>([]);
+function TransfersTable() {
+  const [transfers, setTransfers] = useState<Array<Transfer>>([]);
 
   async function fetchTransactions() {
-    const models = await DataStore.query(Transfers);
+    const models = await DataStore.query(Transfer);
     setTransfers(models);
   }
 

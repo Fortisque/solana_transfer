@@ -2,14 +2,14 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTransfers = /* GraphQL */ `
-  query GetTransfers($id: ID!) {
-    getTransfers(id: $id) {
+export const getTransfer = /* GraphQL */ `
+  query GetTransfer($id: ID!) {
+    getTransfer(id: $id) {
       id
       from_address
       to_address
       signature
-      amount
+      amount_in_sol
       createdAt
       updatedAt
       _version
@@ -20,7 +20,7 @@ export const getTransfers = /* GraphQL */ `
 `;
 export const listTransfers = /* GraphQL */ `
   query ListTransfers(
-    $filter: ModelTransfersFilterInput
+    $filter: ModelTransferFilterInput
     $limit: Int
     $nextToken: String
   ) {
@@ -30,7 +30,7 @@ export const listTransfers = /* GraphQL */ `
         from_address
         to_address
         signature
-        amount
+        amount_in_sol
         createdAt
         updatedAt
         _version
@@ -44,7 +44,7 @@ export const listTransfers = /* GraphQL */ `
 `;
 export const syncTransfers = /* GraphQL */ `
   query SyncTransfers(
-    $filter: ModelTransfersFilterInput
+    $filter: ModelTransferFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
@@ -60,7 +60,7 @@ export const syncTransfers = /* GraphQL */ `
         from_address
         to_address
         signature
-        amount
+        amount_in_sol
         createdAt
         updatedAt
         _version

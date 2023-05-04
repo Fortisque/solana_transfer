@@ -2,17 +2,17 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTransfers = /* GraphQL */ `
-  mutation CreateTransfers(
-    $input: CreateTransfersInput!
-    $condition: ModelTransfersConditionInput
+export const createTransfer = /* GraphQL */ `
+  mutation CreateTransfer(
+    $input: CreateTransferInput!
+    $condition: ModelTransferConditionInput
   ) {
-    createTransfers(input: $input, condition: $condition) {
+    createTransfer(input: $input, condition: $condition) {
       id
       from_address
       to_address
       signature
-      amount
+      amount_in_sol
       createdAt
       updatedAt
       _version
@@ -21,17 +21,17 @@ export const createTransfers = /* GraphQL */ `
     }
   }
 `;
-export const updateTransfers = /* GraphQL */ `
-  mutation UpdateTransfers(
-    $input: UpdateTransfersInput!
-    $condition: ModelTransfersConditionInput
+export const updateTransfer = /* GraphQL */ `
+  mutation UpdateTransfer(
+    $input: UpdateTransferInput!
+    $condition: ModelTransferConditionInput
   ) {
-    updateTransfers(input: $input, condition: $condition) {
+    updateTransfer(input: $input, condition: $condition) {
       id
       from_address
       to_address
       signature
-      amount
+      amount_in_sol
       createdAt
       updatedAt
       _version
@@ -40,17 +40,17 @@ export const updateTransfers = /* GraphQL */ `
     }
   }
 `;
-export const deleteTransfers = /* GraphQL */ `
-  mutation DeleteTransfers(
-    $input: DeleteTransfersInput!
-    $condition: ModelTransfersConditionInput
+export const deleteTransfer = /* GraphQL */ `
+  mutation DeleteTransfer(
+    $input: DeleteTransferInput!
+    $condition: ModelTransferConditionInput
   ) {
-    deleteTransfers(input: $input, condition: $condition) {
+    deleteTransfer(input: $input, condition: $condition) {
       id
       from_address
       to_address
       signature
-      amount
+      amount_in_sol
       createdAt
       updatedAt
       _version

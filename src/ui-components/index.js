@@ -5,5 +5,5 @@
  **************************************************************************/
 
 export { default as studioTheme } from "./studioTheme";
-export { default as TransfersCreateForm } from "./TransfersCreateForm";
-export { default as TransfersUpdateForm } from "./TransfersUpdateForm";
+export { default as TransferCreateForm } from "./TransferCreateForm";
+export { default as TransferUpdateForm } from "./TransferUpdateForm";

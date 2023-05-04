@@ -1,8 +1,7 @@
-type Transfers @model @auth(rules: [{allow: public}]) {
+type Transfer @model @auth(rules: [{allow: public}]) {
   id: ID!
   from_address: String!
   to_address: String!
   signature: String!
-  amount: Float!
+  amount_in_sol: Float!
 }
- 
