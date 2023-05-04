@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
 
 import {
   WalletDisconnectButton,
@@ -16,7 +15,7 @@ import { isDarkThemeAtom } from "../../common_helpers/atoms";
 export default function NavBar() {
   const [isDarkTheme] = useRecoilState(isDarkThemeAtom);
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 0 }}>
       <AppBar position="static">
         <Toolbar disableGutters className="nav-bar-toolbar">
           <Box sx={{ display: "flex", flexGrow: 1, alignItems: "center" }}>
@@ -30,8 +29,8 @@ export default function NavBar() {
             />
           </Box>
           <Box className="nav-right">
-            <WalletMultiButton />
-            <WalletDisconnectButton />
+            <WalletMultiButton color="secondary" />
+            <WalletDisconnectButton color="secondary" />
             <LightDarkSwitch />
           </Box>
         </Toolbar>

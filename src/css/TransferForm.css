@@ -1,0 +1,28 @@
+.transfer-wrapper {
+  padding: 16px;
+  margin: 16px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.transfer-form {
+  display: flex;
+  padding: 16px;
+  gap: 12px;
+  align-items: center;
+}
+
+.transfer-my-wallet {
+  display: flex;
+  flex-direction: column;
+}
+
+.transfer-alert-message {
+  display: flex;
+  flex-grow: 1;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
