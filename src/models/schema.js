@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Transactions": {
-            "name": "Transactions",
+        "Transfers": {
+            "name": "Transfers",
             "fields": {
                 "id": {
                     "name": "id",
@@ -24,10 +24,17 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "transaction_id": {
-                    "name": "transaction_id",
+                "signature": {
+                    "name": "signature",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "amount": {
+                    "name": "amount",
+                    "isArray": false,
+                    "type": "Float",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -49,7 +56,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Transactions",
+            "pluralName": "Transfers",
             "attributes": [
                 {
                     "type": "model",
@@ -77,5 +84,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.2",
-    "version": "44dea96c06c481196b758b0ee8973e7e"
+    "version": "560561538eaceb1b7e223dc384c7e244"
 };

@@ -2,16 +2,17 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTransactions = /* GraphQL */ `
-  mutation CreateTransactions(
-    $input: CreateTransactionsInput!
-    $condition: ModelTransactionsConditionInput
+export const createTransfers = /* GraphQL */ `
+  mutation CreateTransfers(
+    $input: CreateTransfersInput!
+    $condition: ModelTransfersConditionInput
   ) {
-    createTransactions(input: $input, condition: $condition) {
+    createTransfers(input: $input, condition: $condition) {
       id
       from_address
       to_address
-      transaction_id
+      signature
+      amount
       createdAt
       updatedAt
       _version
@@ -20,16 +21,17 @@ export const createTransactions = /* GraphQL */ `
     }
   }
 `;
-export const updateTransactions = /* GraphQL */ `
-  mutation UpdateTransactions(
-    $input: UpdateTransactionsInput!
-    $condition: ModelTransactionsConditionInput
+export const updateTransfers = /* GraphQL */ `
+  mutation UpdateTransfers(
+    $input: UpdateTransfersInput!
+    $condition: ModelTransfersConditionInput
   ) {
-    updateTransactions(input: $input, condition: $condition) {
+    updateTransfers(input: $input, condition: $condition) {
       id
       from_address
       to_address
-      transaction_id
+      signature
+      amount
       createdAt
       updatedAt
       _version
@@ -38,16 +40,17 @@ export const updateTransactions = /* GraphQL */ `
     }
   }
 `;
-export const deleteTransactions = /* GraphQL */ `
-  mutation DeleteTransactions(
-    $input: DeleteTransactionsInput!
-    $condition: ModelTransactionsConditionInput
+export const deleteTransfers = /* GraphQL */ `
+  mutation DeleteTransfers(
+    $input: DeleteTransfersInput!
+    $condition: ModelTransfersConditionInput
   ) {
-    deleteTransactions(input: $input, condition: $condition) {
+    deleteTransfers(input: $input, condition: $condition) {
       id
       from_address
       to_address
-      transaction_id
+      signature
+      amount
       createdAt
       updatedAt
       _version

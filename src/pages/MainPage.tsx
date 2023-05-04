@@ -14,6 +14,7 @@ import { WalletProvider } from "./WalletProvider";
 import { useRecoilState } from "recoil";
 import { isDarkThemeAtom } from "../common_helpers/atoms";
 import TransferForm from "../components/transfer_form/TransferForm";
+import TransfersTable from "../components/transfers_table/TransfersTable";
 
 export default function MainPage() {
   const [isDarkThemeAtomValue, setIsDarkTheme] =
@@ -57,6 +58,7 @@ export default function MainPage() {
         <Box height="100vh" display="flex" flexDirection="column">
           <NavBar />
           <TransferForm />
+          <TransfersTable />
         </Box>
       </WalletProvider>
     </ThemeProvider>

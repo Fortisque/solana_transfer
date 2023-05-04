@@ -2,11 +2,9 @@ import { useMemo, useState, useCallback } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import {
-  Alert,
   Card,
   CircularProgress,
   FormLabel,
-  Link,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -21,10 +19,10 @@ import {
 import { WalletMultiButton } from "@solana/wallet-adapter-material-ui";
 import { filterNulls } from "../../common_helpers/filterNulls";
 import { nullThrows } from "../../common_helpers/nullThrows";
-import { getSolScanTransactionURL } from "../../common_helpers/sol_helpers/getSolScanTransactionURL";
 import { abbreviateLongString } from "../../common_helpers/abbreviateLongString";
+import TransferAlertMessage from "./TransferAlertMessage";
 
-type TransferStatus = {
+export type TransferStatus = {
   status: "success" | "pending" | "error";
   message?: string | null;
 };
@@ -100,7 +98,9 @@ function TransferForm() {
   }, [publicKey, recipientAddress, solAmount]);
   return (
     <Card className="transfer-wrapper">
-      <Typography color="inherit" variant="h4">Transfer SOL</Typography>
+      <Typography color="inherit" variant="h4">
+        Transfer SOL
+      </Typography>
       <div className="transfer-form">
         {publicKey == null ? (
           <div className={"transfer-my-wallet"}>
@@ -178,46 +178,10 @@ function TransferForm() {
           </span>
         </Tooltip>
       </div>
-      {["success", "error"].includes(transferStatus?.status ?? "") ? (
-        <div className="transfer-alert-message">
-          <Alert
-            severity={
-              transferStatus?.status === "success" ? "success" : "error"
-            }
-            action={
-              transferStatus?.status === "success" ? (
-                <Button
-                  color="inherit"
-                  size="small"
-                  onClick={() => setTransferStatus(null)}
-                >
-                  Confirm and Reset
-                </Button>
-              ) : null
-            }
-          >
-            {transferStatus?.status === "success" ? (
-              <>
-                Successfully sent SOL, view on{" "}
-                <Link
-                  color="secondary"
-                  target="_blank"
-                  href={getSolScanTransactionURL(
-                    nullThrows(transferStatus?.message)
-                  )}
-                >
-                  SOLScan
-                </Link>
-              </>
-            ) : (
-              <>
-                Failed to send SOL, see:{" "}
-                {transferStatus?.message ?? "Unknown error"}
-              </>
-            )}
-          </Alert>
-        </div>
-      ) : null}
+      <TransferAlertMessage
+        transferStatus={transferStatus}
+        setTransferStatus={setTransferStatus}
+      />
     </Card>
   );
 }

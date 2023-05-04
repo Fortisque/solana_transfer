@@ -1,0 +1,6 @@
+.transfer-alert-message {
+  display: flex;
+  flex-grow: 1;
+  padding-top: 16px;
+  justify-content: center;
+}

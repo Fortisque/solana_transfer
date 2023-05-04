@@ -1,14 +1,14 @@
 .transfer-wrapper {
   padding: 16px;
   margin: 16px;
-  align-items: center;
+  align-items: start;
   display: flex;
   flex-direction: column;
 }
 
 .transfer-form {
   display: flex;
-  padding: 16px;
+  padding-top: 16px;
   gap: 12px;
   align-items: center;
 }
@@ -21,8 +21,6 @@
 .transfer-alert-message {
   display: flex;
   flex-grow: 1;
-  padding: 16px;
+  padding-top: 16px;
   justify-content: center;
-  align-items: center;
-  align-content: center;
 }

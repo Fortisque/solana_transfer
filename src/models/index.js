@@ -4,8 +4,8 @@ import { schema } from './schema';
 
 
 
-const { Transactions } = initSchema(schema);
+const { Transfers } = initSchema(schema);
 
 export {
-  Transactions
+  Transfers
 };

@@ -2,15 +2,16 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTransactions = /* GraphQL */ `
-  subscription OnCreateTransactions(
-    $filter: ModelSubscriptionTransactionsFilterInput
+export const onCreateTransfers = /* GraphQL */ `
+  subscription OnCreateTransfers(
+    $filter: ModelSubscriptionTransfersFilterInput
   ) {
-    onCreateTransactions(filter: $filter) {
+    onCreateTransfers(filter: $filter) {
       id
       from_address
       to_address
-      transaction_id
+      signature
+      amount
       createdAt
       updatedAt
       _version
@@ -19,15 +20,16 @@ export const onCreateTransactions = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateTransactions = /* GraphQL */ `
-  subscription OnUpdateTransactions(
-    $filter: ModelSubscriptionTransactionsFilterInput
+export const onUpdateTransfers = /* GraphQL */ `
+  subscription OnUpdateTransfers(
+    $filter: ModelSubscriptionTransfersFilterInput
   ) {
-    onUpdateTransactions(filter: $filter) {
+    onUpdateTransfers(filter: $filter) {
       id
       from_address
       to_address
-      transaction_id
+      signature
+      amount
       createdAt
       updatedAt
       _version
@@ -36,15 +38,16 @@ export const onUpdateTransactions = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteTransactions = /* GraphQL */ `
-  subscription OnDeleteTransactions(
-    $filter: ModelSubscriptionTransactionsFilterInput
+export const onDeleteTransfers = /* GraphQL */ `
+  subscription OnDeleteTransfers(
+    $filter: ModelSubscriptionTransfersFilterInput
   ) {
-    onDeleteTransactions(filter: $filter) {
+    onDeleteTransfers(filter: $filter) {
       id
       from_address
       to_address
-      transaction_id
+      signature
+      amount
       createdAt
       updatedAt
       _version

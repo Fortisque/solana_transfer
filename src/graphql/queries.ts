@@ -2,13 +2,14 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTransactions = /* GraphQL */ `
-  query GetTransactions($id: ID!) {
-    getTransactions(id: $id) {
+export const getTransfers = /* GraphQL */ `
+  query GetTransfers($id: ID!) {
+    getTransfers(id: $id) {
       id
       from_address
       to_address
-      transaction_id
+      signature
+      amount
       createdAt
       updatedAt
       _version
@@ -17,18 +18,19 @@ export const getTransactions = /* GraphQL */ `
     }
   }
 `;
-export const listTransactions = /* GraphQL */ `
-  query ListTransactions(
-    $filter: ModelTransactionsFilterInput
+export const listTransfers = /* GraphQL */ `
+  query ListTransfers(
+    $filter: ModelTransfersFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTransactions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTransfers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         from_address
         to_address
-        transaction_id
+        signature
+        amount
         createdAt
         updatedAt
         _version
@@ -40,14 +42,14 @@ export const listTransactions = /* GraphQL */ `
     }
   }
 `;
-export const syncTransactions = /* GraphQL */ `
-  query SyncTransactions(
-    $filter: ModelTransactionsFilterInput
+export const syncTransfers = /* GraphQL */ `
+  query SyncTransfers(
+    $filter: ModelTransfersFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncTransactions(
+    syncTransfers(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -57,7 +59,8 @@ export const syncTransactions = /* GraphQL */ `
         id
         from_address
         to_address
-        transaction_id
+        signature
+        amount
         createdAt
         updatedAt
         _version
