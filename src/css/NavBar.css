@@ -1,0 +1,22 @@
+.nav-bar-toolbar {
+    padding-left: 12px;
+    padding-right: 12px;   
+}
+
+.nav-logo {
+    width: 200px;
+    height: auto;
+    align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    gap: 16px;
+}
+
+@media (max-width: 625px) 
+{
+    .nav-logo  {
+        width: max(calc(100vw - 425px), 75px);
+    }
+}

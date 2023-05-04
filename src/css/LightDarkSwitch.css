@@ -1,0 +1,9 @@
+.text-signal-warning-default {
+    color: #ffbd45;
+}
+
+.light-dark-switch-wrapper {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}

@@ -1,19 +1,18 @@
 import React, { FC, useMemo } from "react";
 import {
   ConnectionProvider,
-  WalletProvider,
+  WalletProvider as SolanaWalletProvider,
 } from "@solana/wallet-adapter-react";
 import { UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets";
 import {
   WalletDialogProvider,
-  WalletDisconnectButton,
-  WalletMultiButton,
 } from "@solana/wallet-adapter-material-ui";
 import { clusterApiUrl } from "@solana/web3.js";
-import { ADAPTER_NETWORK } from "../../common_helpers/constants";
-import { useTheme } from "@mui/material";
+import { ADAPTER_NETWORK } from "../common_helpers/constants";
 
-export const Wallet: FC = () => {
+type Props = { children?: React.ReactNode };
+
+export const WalletProvider: FC<Props> = ({ children }) => {
   const network = ADAPTER_NETWORK;
 
   // You can also provide a custom RPC endpoint.
@@ -38,18 +37,12 @@ export const Wallet: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [network]
   );
-  const theme = useTheme();
-  console.log(theme);
 
   return (
     <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletDialogProvider>
-          <WalletMultiButton />
-          <WalletDisconnectButton />
-          {/* Your app's components go here, nested within the context providers. */}
-        </WalletDialogProvider>
-      </WalletProvider>
+      <SolanaWalletProvider wallets={wallets} autoConnect>
+        <WalletDialogProvider>{children}</WalletDialogProvider>
+      </SolanaWalletProvider>
     </ConnectionProvider>
   );
 };
