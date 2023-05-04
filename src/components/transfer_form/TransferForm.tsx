@@ -21,6 +21,8 @@ import { filterNulls } from "../../common_helpers/filterNulls";
 import { nullThrows } from "../../common_helpers/nullThrows";
 import { abbreviateLongString } from "../../common_helpers/abbreviateLongString";
 import TransferAlertMessage from "./TransferAlertMessage";
+import { DataStore } from "aws-amplify";
+import { Transfers } from "../../models";
 
 export type TransferStatus = {
   status: "success" | "pending" | "error";
@@ -89,8 +91,22 @@ function TransferForm() {
       nullThrows(solAmount),
       connection
     )
-      .then((message) => {
-        setTransferStatus({ status: "success", message });
+      .then(async (signature) => {
+        setTransferStatus({ status: "success", message: signature });
+        await DataStore.save(
+          new Transfers({
+            from_address: nullThrows(publicKey?.toString()),
+            to_address: nullThrows(recipientAddress),
+            signature: nullThrows(signature),
+            amount: nullThrows(solAmount),
+          })
+        )
+          .then((msg) => {
+            console.log(msg);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         setTransferStatus({ status: "error", message: error.toString() });
