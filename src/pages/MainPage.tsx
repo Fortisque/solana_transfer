@@ -8,12 +8,11 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import { Amplify } from "aws-amplify";
 import { useRecoilState } from "recoil";
 import { isDarkThemeAtom } from "../common_helpers/atoms";
 import NavBar from "../components/navigation/NavBar";
 import TransferForm from "../components/transfer_form/TransferForm";
-import TransfersTable from "../components/transfers_table/TransfersTable";
+import TransfersTableCard from "../components/transfers_table/TransfersTableCard";
 import { WalletProvider } from "./WalletProvider";
 
 export default function MainPage() {
@@ -58,7 +57,7 @@ export default function MainPage() {
         <Box height="100vh" display="flex" flexDirection="column">
           <NavBar />
           <TransferForm />
-          <TransfersTable />
+          <TransfersTableCard />
         </Box>
       </WalletProvider>
     </ThemeProvider>

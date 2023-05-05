@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@algolia/autocomplete-js": "^1.9.2",
+    "@algolia/autocomplete-theme-classic": "^1.9.2",
     "@aws-amplify/ui-react": "^4.6.1",
     "@aws-amplify/ui-react-storage": "^1.2.0",
     "@emotion/react": "^11.10.8",

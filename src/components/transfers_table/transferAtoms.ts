@@ -1,5 +1,5 @@
 import { RecoilState, atom, selector } from "recoil";
-import { TransferRow } from "./TransfersTableRow";
+import { TransferRow } from "./processTransfersIntoRows";
 
 export type Order = "asc" | "desc";
 
@@ -30,3 +30,16 @@ export const isOnlyShowCurrentlyConnectedWalletAtom: RecoilState<boolean> =
     key: "isOnlyShowCurrentlyConnectedWallet",
     default: true,
   });
+
+// Effectively this is used as a bridge to ask algolio to update when this changes
+export const algoliaUpdatedObjectIDsAtom: RecoilState<Array<string> | null> =
+  atom<Array<string> | null>({
+    key: "algoliaUpdatedObjectIDs",
+    default: null,
+  });
+
+// Used when clicking an autocomplete row to force the autocomplete input to match it.
+export const hasPendingQueryOverrideAtom: RecoilState<boolean> = atom<boolean>({
+  key: "hasPendingQueryOverride",
+  default: false,
+});

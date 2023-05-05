@@ -7,7 +7,6 @@ import { RecoilRoot } from "recoil";
 import MainPage from "./pages/MainPage";
 
 Amplify.configure(config);
-Amplify.Logger.LOG_LEVEL = "DEBUG";
 
 function App(): ReactElement {
   return (

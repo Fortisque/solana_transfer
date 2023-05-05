@@ -9,37 +9,16 @@ import {
 } from "@mui/material";
 import { visuallyHidden } from "@mui/utils";
 import { useRecoilState } from "recoil";
-import { TransferRow } from "./TransfersTableRow";
-import { transferTableOrderAtom, transferTableOrderByAtom } from "./transferAtoms";
-
-type HeadCell = {
-  id: keyof TransferRow;
-  label: string;
-};
+import {
+  transferTableOrderAtom,
+  transferTableOrderByAtom,
+} from "./transferAtoms";
+import { TransferRow } from "./processTransfersIntoRows";
+import {
+  headCells,
+} from "./getHeadCellsUtils";
 
 function TransfersTableHeaderRow() {
-  const headCells: readonly HeadCell[] = [
-    {
-      id: "signature",
-      label: "Signature",
-    },
-    {
-      id: "time",
-      label: "Time",
-    },
-    {
-      id: "from_address",
-      label: "From Address",
-    },
-    {
-      id: "to_address",
-      label: "To Address",
-    },
-    {
-      id: "amount_in_sol",
-      label: "Amount (SOL)",
-    },
-  ];
   const [order, setOrder] = useRecoilState(transferTableOrderAtom);
   const [orderBy, setOrderBy] = useRecoilState(transferTableOrderByAtom);
   const handleRequestSort = (property: keyof TransferRow) => {
