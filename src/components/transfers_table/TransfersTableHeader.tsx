@@ -16,6 +16,7 @@ import { SearchClient } from "algoliasearch";
 import { ALGOLIA_INDEX_NAME } from "../../common_helpers/constants";
 import AutocompleteResultRow from "./autocomplete/AutocompleteResultRow";
 import { AlgoliaRow } from "../../algolia/synchronizeAlgolia";
+import { useCallback } from "react";
 
 type Props = {
   searchClient: SearchClient;
@@ -28,10 +29,6 @@ function TransfersTableHeader({ searchClient }: Props) {
     isOnlyShowCurrentlyConnectedWallet,
     setIsOnlyShowCurrentlyConnectedWallet,
   ] = useRecoilState(isOnlyShowCurrentlyConnectedWalletAtom);
-  const algoliaFilterString =
-    publicKeyStr == null || isOnlyShowCurrentlyConnectedWallet === false
-      ? undefined
-      : `from_address:${publicKeyStr}`;
   return (
     <Box className="transfers-table-header">
       <Typography color="inherit" variant="h4">
@@ -45,9 +42,12 @@ function TransfersTableHeader({ searchClient }: Props) {
           </Tooltip>
         </div>
       </Typography>
-      <InstantSearchManager />
       <Box sx={{ display: "flex", alignItems: "center", paddingBottom: 2 }}>
+        <InstantSearchManager />
         <AlgoliaAutocomplete
+          // Re-render this component to update getSources whenever the wallet switches or when
+          // only current wallet is checked since that changes the autocomplete results
+          key={`${isOnlyShowCurrentlyConnectedWallet}${publicKeyStr}`}
           placeholder="Search transfers"
           getSources={({ query }) => [
             {
@@ -59,9 +59,19 @@ function TransfersTableHeader({ searchClient }: Props) {
                     {
                       indexName: ALGOLIA_INDEX_NAME,
                       query,
-                      params: { hitsPerPage: 10, filters: algoliaFilterString },
+                      params: { hitsPerPage: 10 },
                     },
                   ],
+                  transformResponse: ({ hits }) => {
+                    // Filtering server side via the "filter" param would be better, but doesn't seem to work
+                    const [firstHits] = hits;
+                    return firstHits.filter(
+                      (hit) =>
+                        isOnlyShowCurrentlyConnectedWallet == false ||
+                        publicKeyStr == null ||
+                        (hit as AlgoliaRow).from_address === publicKeyStr
+                    );
+                  },
                 });
               },
               templates: {

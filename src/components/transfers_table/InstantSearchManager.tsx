@@ -3,9 +3,11 @@ import { Configure, useInstantSearch } from "react-instantsearch-hooks-web";
 import { useRecoilValue } from "recoil";
 import {
   algoliaUpdatedObjectIDsAtom,
+  isOnlyShowCurrentlyConnectedWalletAtom,
   transferTablePageNumberAtom,
   transferTableRowsPerPageAtom,
 } from "./transferAtoms";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 function InstantSearchManager() {
   const instantSearch = useInstantSearch();
@@ -20,7 +22,23 @@ function InstantSearchManager() {
   }, [algoliaUpdatedObjectIDs]);
   const page = useRecoilValue(transferTablePageNumberAtom);
   const rowsPerPage = useRecoilValue(transferTableRowsPerPageAtom);
-  return <Configure analytics={false} hitsPerPage={rowsPerPage} page={page} />;
+  const { publicKey } = useWallet();
+  const publicKeyStr = publicKey?.toString();
+  const isOnlyShowCurrentlyConnectedWallet = useRecoilValue(
+    isOnlyShowCurrentlyConnectedWalletAtom
+  );
+  const algoliaFilterString =
+    publicKeyStr == null || isOnlyShowCurrentlyConnectedWallet === false
+      ? undefined
+      : `from_address:"${publicKeyStr}"`;
+  return (
+    <Configure
+      analytics={false}
+      hitsPerPage={rowsPerPage}
+      page={page}
+      filters={algoliaFilterString}
+    />
+  );
 }
 
 export default InstantSearchManager;
