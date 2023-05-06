@@ -1,8 +1,8 @@
-import { Alert, Button, Link } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 import { nullThrows } from "../../common_helpers/nullThrows";
-import { getSolScanTransactionURL } from "../../common_helpers/sol_helpers/getSolScanTransactionURL";
 import "../../css/TransferAlertMessage.css";
 import { TransferStatus } from "./TransferForm";
+import SignatureSOLLink from "../common/SignatureSOLLink";
 
 type Props = {
   transferStatus: TransferStatus | null;
@@ -33,15 +33,10 @@ function TransferAlertMessage({ transferStatus, setTransferStatus }: Props) {
             {transferStatus?.status === "success" ? (
               <>
                 Successfully sent SOL, view on{" "}
-                <Link
-                  color="secondary"
-                  target="_blank"
-                  href={getSolScanTransactionURL(
-                    nullThrows(transferStatus?.message)
-                  )}
-                >
-                  SOLScan
-                </Link>
+                <SignatureSOLLink
+                  signature={nullThrows(transferStatus?.message)}
+                  hasTooltip={false}
+                />
               </>
             ) : (
               <>

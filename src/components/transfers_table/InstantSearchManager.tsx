@@ -15,7 +15,9 @@ function InstantSearchManager() {
     if (algoliaUpdatedObjectIDs != null) {
       instantSearch.refresh();
     }
-  }, [algoliaUpdatedObjectIDs, instantSearch]);
+    // Only call this on known updates
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [algoliaUpdatedObjectIDs]);
   const page = useRecoilValue(transferTablePageNumberAtom);
   const rowsPerPage = useRecoilValue(transferTableRowsPerPageAtom);
   return <Configure analytics={false} hitsPerPage={rowsPerPage} page={page} />;

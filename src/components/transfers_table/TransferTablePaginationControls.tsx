@@ -25,8 +25,9 @@ function TransferTablePaginationControls() {
   return (
     <TablePagination
       rowsPerPageOptions={[5, 10, 25]}
+      sx={{ flexShrink: 0 }}
       component="div"
-      // If searching we will probably limit down to a single page and therefore ccan use hits length
+      // If searching we will probably limit down to a single page and therefore can use hits length
       // nbHits does not take into account the search string which is sad.
       count={isFirstPage && isLastPage ? hits.length : nbHits}
       rowsPerPage={rowsPerPage}

@@ -16,7 +16,6 @@ import { SearchClient } from "algoliasearch";
 import { ALGOLIA_INDEX_NAME } from "../../common_helpers/constants";
 import AutocompleteResultRow from "./autocomplete/AutocompleteResultRow";
 import { AlgoliaRow } from "../../algolia/synchronizeAlgolia";
-import { useSearchBox } from "react-instantsearch-hooks-web";
 
 type Props = {
   searchClient: SearchClient;
@@ -29,9 +28,6 @@ function TransfersTableHeader({ searchClient }: Props) {
     isOnlyShowCurrentlyConnectedWallet,
     setIsOnlyShowCurrentlyConnectedWallet,
   ] = useRecoilState(isOnlyShowCurrentlyConnectedWalletAtom);
-  const { query } = useSearchBox();
-  console.log(query);
-
   return (
     <Box
       sx={{

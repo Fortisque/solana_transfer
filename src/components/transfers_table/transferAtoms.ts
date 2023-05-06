@@ -1,4 +1,4 @@
-import { RecoilState, atom, selector } from "recoil";
+import { RecoilState, atom } from "recoil";
 import { TransferRow } from "./processTransfersIntoRows";
 
 export type Order = "asc" | "desc";
@@ -43,3 +43,13 @@ export const hasPendingQueryOverrideAtom: RecoilState<boolean> = atom<boolean>({
   key: "hasPendingQueryOverride",
   default: false,
 });
+
+type transferDialogState = {
+  isOpen: boolean;
+  selectedSignature?: string | null;
+};
+export const transferDialogStateAtom: RecoilState<transferDialogState> =
+  atom<transferDialogState>({
+    key: "transferDialogState",
+    default: { isOpen: false, selectedSignature: null },
+  });

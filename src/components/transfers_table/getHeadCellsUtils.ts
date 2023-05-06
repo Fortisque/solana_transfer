@@ -35,16 +35,20 @@ export type ReplicaOrderingSettings = {
 };
 
 export function getAllPossibleOrderings(): Array<ReplicaOrderingSettings> {
-  return headCells.flatMap((h) => [
-    {
-      order: "asc",
-      orderBy: h.id,
-    },
-    {
-      order: "desc",
-      orderBy: h.id,
-    },
-  ]);
+  return headCells.flatMap((h) =>
+    h.id === "from_address"
+      ? []
+      : [
+          {
+            order: "asc",
+            orderBy: h.id,
+          },
+          {
+            order: "desc",
+            orderBy: h.id,
+          },
+        ]
+  );
 }
 
 export function getReplicaIndexName(

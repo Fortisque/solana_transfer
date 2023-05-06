@@ -26,6 +26,7 @@ export default function NavBar() {
                   : "assets/img/solana_text.png"
               }
               className="nav-logo"
+              alt="logo"
             />
           </Box>
           <Box className="nav-right">

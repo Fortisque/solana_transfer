@@ -11,6 +11,7 @@ function AddressCell({ address }: Props) {
         target="_blank"
         color="secondary"
         href={getSolScanAccountURL(address)}
+        onClick={(e) => e.stopPropagation()}
       >
         {abbreviateWalletPublicKey(address)}
       </Link>

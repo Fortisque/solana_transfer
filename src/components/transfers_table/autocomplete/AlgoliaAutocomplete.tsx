@@ -43,7 +43,7 @@ export default function AlgoliaAutocomplete({
   useEffect(() => {
     setQuery(instantSearchUiState.query);
     setPage(0);
-  }, [instantSearchUiState]);
+  }, [instantSearchUiState, setPage, setQuery]);
 
   const [hasPendingQueryOverride, setHasPendingQueryOverride] = useRecoilState(
     hasPendingQueryOverrideAtom
@@ -56,6 +56,7 @@ export default function AlgoliaAutocomplete({
       setHasPendingQueryOverride(false);
       autocompleteInstanceRef.setQuery(query);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasPendingQueryOverride, autocompleteInstanceRef]);
   useEffect(() => {
     if (!autocompleteContainer.current) {
@@ -94,6 +95,8 @@ export default function AlgoliaAutocomplete({
     setAutocompleteInstanceRef(autocompleteInstance);
 
     return () => autocompleteInstance.destroy();
+    // autocomplete should only be set up once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

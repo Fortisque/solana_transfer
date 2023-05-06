@@ -9,6 +9,7 @@ import TransfersTableHeader from "./TransfersTableHeader";
 import {
   algoliaUpdatedObjectIDsAtom,
   isOnlyShowCurrentlyConnectedWalletAtom,
+  transferDialogStateAtom,
   transferTableOrderAtom,
   transferTableOrderByAtom,
 } from "./transferAtoms";
@@ -23,7 +24,8 @@ import {
 import TransfersTable from "./TransfersTable";
 import { getReplicaIndexName } from "./getHeadCellsUtils";
 
-import '@algolia/autocomplete-theme-classic';
+import "@algolia/autocomplete-theme-classic";
+import TransferDialog from "../transfer_dialog/TransferDialog";
 
 const searchClient = algoliasearch(ALGOLIA_APPLICATION_ID, ALGOLIA_PUBLIC_KEY);
 
@@ -45,7 +47,7 @@ function TransfersTableCard() {
         : (t) => t.from_address.eq(publicKeyStr)
     ).subscribe((snapshot) => {
       // Unnecessary since algolia and amplify should always be in sync, but just in case
-      // E.g. if we wipe the amplify DB then algolia should fully re-sync
+      // E.g. if we wipe the amplify DB then algolia should fully re-sync then uncomment this
       // ensureFullySyncedAlgolia(processTransfersIntoRows(snapshot.items));
     });
     return () => subscription.unsubscribe();
@@ -53,7 +55,7 @@ function TransfersTableCard() {
   useEffect(() => {
     const subscription = DataStore.observe(Transfer).subscribe((msg) => {
       if (msg.opType === "UPDATE") {
-        // Use the update since we want the createdAt time to be set already
+        // Use the update rather than create since we want the createdAt time to be set already
         updateNewRecordsIntoAlgolia(
           processTransfersIntoRows([msg.element])
         ).then((objectIDs) => {
@@ -66,6 +68,7 @@ function TransfersTableCard() {
 
   const order = useRecoilValue(transferTableOrderAtom);
   const orderBy = useRecoilValue(transferTableOrderByAtom);
+  const transferDialogState = useRecoilValue(transferDialogStateAtom);
   return (
     <Card className="transfers-table-wrapper">
       <InstantSearch
@@ -75,6 +78,7 @@ function TransfersTableCard() {
         <TransfersTableHeader searchClient={searchClient} />
         <TransfersTable />
       </InstantSearch>
+      {transferDialogState.isOpen && <TransferDialog />}
     </Card>
   );
 }
