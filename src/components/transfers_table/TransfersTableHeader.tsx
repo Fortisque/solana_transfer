@@ -28,6 +28,10 @@ function TransfersTableHeader({ searchClient }: Props) {
     isOnlyShowCurrentlyConnectedWallet,
     setIsOnlyShowCurrentlyConnectedWallet,
   ] = useRecoilState(isOnlyShowCurrentlyConnectedWalletAtom);
+  const algoliaFilterString =
+    publicKeyStr == null || isOnlyShowCurrentlyConnectedWallet === false
+      ? undefined
+      : `from_address:${publicKeyStr}`;
   return (
     <Box className="transfers-table-header">
       <Typography color="inherit" variant="h4">
@@ -55,7 +59,7 @@ function TransfersTableHeader({ searchClient }: Props) {
                     {
                       indexName: ALGOLIA_INDEX_NAME,
                       query,
-                      params: { hitsPerPage: 10 },
+                      params: { hitsPerPage: 10, filters: algoliaFilterString },
                     },
                   ],
                 });
