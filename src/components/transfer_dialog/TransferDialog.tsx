@@ -1,4 +1,11 @@
-import { Dialog, DialogTitle, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Dialog,
+  DialogTitle,
+  Grid,
+  Typography,
+} from "@mui/material";
 import { useRecoilState } from "recoil";
 import { transferDialogStateAtom } from "../transfers_table/transferAtoms";
 import { useConnection } from "@solana/wallet-adapter-react";
@@ -69,7 +76,18 @@ function TransferDialog() {
           "Unknown Error"
         )}
       </DialogTitle>
-      {transactionData == null ? null : (
+      {transactionData == null ? (
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "center",
+            padding: 3,
+          }}
+        >
+          <CircularProgress color="secondary" />
+        </Box>
+      ) : (
         <Grid
           container
           spacing={2}
