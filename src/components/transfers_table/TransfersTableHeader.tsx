@@ -29,24 +29,17 @@ function TransfersTableHeader({ searchClient }: Props) {
     setIsOnlyShowCurrentlyConnectedWallet,
   ] = useRecoilState(isOnlyShowCurrentlyConnectedWalletAtom);
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexGrow: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        width: "100%",
-        alignItems: "center",
-      }}
-    >
+    <Box className="transfers-table-header">
       <Typography color="inherit" variant="h4">
-        Transfers
-        <Tooltip
-          title="Only includes transfers made on this app"
-          sx={{ marginLeft: 1 }}
-        >
-          <HelpOutline />
-        </Tooltip>
+        <div>
+          Transfers
+          <Tooltip
+            title="Only includes transfers made on this app"
+            sx={{ marginLeft: 1, marginRight: 1 }}
+          >
+            <HelpOutline />
+          </Tooltip>
+        </div>
       </Typography>
       <InstantSearchManager />
       <AlgoliaAutocomplete
