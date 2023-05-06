@@ -1,6 +1,6 @@
-import { TableCell, Tooltip } from "@mui/material";
+import { Box, Tooltip } from "@mui/material";
 
-type Props = { time: number };
+type Props = { timeInMs: number | undefined | null; showDateTime: boolean };
 
 // A simple utility for relative date formatting from https://www.builder.io/blog/relative-time
 function getRelativeTimeString(
@@ -49,13 +49,32 @@ function getRelativeTimeString(
   return rtf.format(Math.floor(deltaSeconds / divisor), units[unitIndex]);
 }
 
-export default function TimeCell({ time }: Props) {
-  const date = new Date(time);
+function formatDateAsDateTime(date: Date): string {
+  const dateTimeText = new Intl.DateTimeFormat(undefined, {
+    dateStyle: "medium",
+    timeStyle: "medium",
+  }).format(date);
+  const timeZoneText = new Intl.DateTimeFormat(undefined, {
+    timeZoneName: "short",
+  })
+    .formatToParts(date)
+    .find((part) => part.type === "timeZoneName")?.value;
+  return `${dateTimeText} ${timeZoneText}`;
+}
+
+export default function RelativeTime({ timeInMs, showDateTime }: Props) {
+  if (timeInMs == null) {
+    return <span>Null time!</span>;
+  }
+  const date = new Date(timeInMs);
   return (
-    <TableCell align="left">
-      <Tooltip title={`${date.toDateString()} ${date.toTimeString()}`}>
+    <>
+      <Tooltip title={formatDateAsDateTime(date)}>
         <span>{getRelativeTimeString(date)}</span>
       </Tooltip>
-    </TableCell>
+      {showDateTime && (
+        <span style={{ marginLeft: 8 }}>{formatDateAsDateTime(date)}</span>
+      )}
+    </>
   );
 }

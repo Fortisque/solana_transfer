@@ -4,10 +4,6 @@ import {
   ALGOLIA_APPLICATION_ID,
   ALGOLIA_INDEX_NAME,
 } from "../common_helpers/constants";
-import {
-  getAllPossibleOrderings,
-  getReplicaIndexName,
-} from "../components/transfers_table/getHeadCellsUtils";
 import { nullThrows } from "../common_helpers/nullThrows";
 
 // TODO move this to private variable
@@ -16,31 +12,6 @@ const client = algoliasearch(
   nullThrows(process.env.REACT_APP_ALGOLIA_BACKEND_SECRET_KEY)
 );
 const index = client.initIndex(ALGOLIA_INDEX_NAME);
-const orderings = getAllPossibleOrderings();
-const replicas = orderings.map((o) => getReplicaIndexName(o));
-index
-  .setSettings({
-    replicas: replicas,
-  })
-  .then(() => {
-    orderings.forEach((o) => {
-      const newReplicaSettings = client.initIndex(getReplicaIndexName(o));
-      newReplicaSettings.setSettings({
-        ranking: [
-          `${o.order}(${o.orderBy})`,
-          // Specified in https://www.algolia.com/doc/api-reference/api-parameters/ranking/?utm_medium=page_link&utm_source=dashboard
-          // Note you can't use custom ordering since that would be applied last :O
-          "typo",
-          "geo",
-          "words",
-          "filters",
-          "proximity",
-          "attribute",
-          "exact",
-        ],
-      });
-    });
-  });
 
 export type AlgoliaRow = TransferRow & {
   objectID: string;

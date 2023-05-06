@@ -1,10 +1,10 @@
 import { TableCell, TableRow } from "@mui/material";
 import AddressCell from "./cells/AddressCell";
-import TimeCell from "./cells/TimeCell";
 import { TransferRow } from "./processTransfersIntoRows";
 import { transferDialogStateAtom } from "./transferAtoms";
 import { useSetRecoilState } from "recoil";
 import SignatureSOLLink from "../common/SignatureSOLLink";
+import RelativeTime from "../common/RelativeTime";
 
 type Props = { row: TransferRow };
 
@@ -25,7 +25,9 @@ function TransfersTableRow({ row }: Props) {
       <TableCell align="left">
         <SignatureSOLLink signature={row.signature} hasTooltip={false} />
       </TableCell>
-      <TimeCell time={row.time} />
+      <TableCell align="left">
+        <RelativeTime timeInMs={row.time} showDateTime={false} />
+      </TableCell>
       <AddressCell address={row.from_address} />
       <AddressCell address={row.to_address} />
       <TableCell align="left">{row.amount_in_sol}</TableCell>

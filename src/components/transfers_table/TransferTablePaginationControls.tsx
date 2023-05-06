@@ -5,11 +5,12 @@ import {
   transferTablePageNumberAtom,
   transferTableRowsPerPageAtom,
 } from "./transferAtoms";
-import { useInfiniteHits, usePagination } from "react-instantsearch-hooks-web";
 
-function TransferTablePaginationControls() {
-  const { hits, isFirstPage, isLastPage } = useInfiniteHits();
-  const { nbHits } = usePagination();
+type Props = {
+  rowsCount: number;
+};
+
+function TransferTablePaginationControls({ rowsCount }: Props) {
   const [pageNumber, setPageNumber] = useRecoilState(
     transferTablePageNumberAtom
   );
@@ -27,9 +28,7 @@ function TransferTablePaginationControls() {
       rowsPerPageOptions={[5, 10, 25]}
       sx={{ flexShrink: 0 }}
       component="div"
-      // If searching we will probably limit down to a single page and therefore can use hits length
-      // nbHits does not take into account the search string which is sad.
-      count={isFirstPage && isLastPage ? hits.length : nbHits}
+      count={rowsCount}
       rowsPerPage={rowsPerPage}
       page={pageNumber}
       onPageChange={(_event: any, page: number) => setPageNumber(page)}

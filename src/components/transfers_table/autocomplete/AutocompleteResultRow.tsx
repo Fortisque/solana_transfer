@@ -8,6 +8,10 @@ type Props = { item: AlgoliaRow; query: string };
 const MAX_NUMBER_OF_CHARACTERS = 20;
 const MINIMUM_FIRST_CHARACTERS = 5;
 
+// Bolds the relevant matched characters keeping the max display size less than
+// 20 to avoid overflowing the textbar of autocomplete.
+// A little janky, since we don't bother showing extra characters in
+// the front if the match is near the end, but should be sufficient for now.
 function AutocompleteResultRow({ item, query }: Props) {
   const { refine: setQuery } = useSearchBox();
   const setHasPendingQueryOverride = useSetRecoilState(

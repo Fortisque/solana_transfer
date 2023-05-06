@@ -14,9 +14,7 @@ import {
   transferTableOrderByAtom,
 } from "./transferAtoms";
 import { TransferRow } from "./processTransfersIntoRows";
-import {
-  headCells,
-} from "./getHeadCellsUtils";
+import { headCells } from "./table_utils/getHeadCellsUtils";
 
 function TransfersTableHeaderRow() {
   const [order, setOrder] = useRecoilState(transferTableOrderAtom);

@@ -17,6 +17,7 @@ import {
   SignatureStatus,
 } from "@solana/web3.js";
 import SignatureSOLLink from "../common/SignatureSOLLink";
+import RelativeTime from "../common/RelativeTime";
 
 function TransferDialog() {
   const [transferDialogStatus, setTransferDialogStatus] = useRecoilState(
@@ -129,13 +130,22 @@ function TransferDialog() {
             sx={{ display: "flex", flexDirection: "column", gap: 1 }}
           >
             <Typography>#{transactionData.slot}</Typography>
-            <Typography>{transactionData.blockTime}</Typography>
+            <Typography>
+              <RelativeTime
+                timeInMs={
+                  transactionData.blockTime == null
+                    ? null
+                    : transactionData.blockTime * 1000
+                }
+                showDateTime={true}
+              />
+            </Typography>
             <Typography>
               {signatureStatus?.confirmationStatus}{" "}
               {signatureStatus?.confirmations == null
                 ? "max"
                 : signatureStatus?.confirmations}{" "}
-              Confirmations
+              confirmations
             </Typography>
             <Typography>
               {transactionData.transaction.message.accountKeys

@@ -101,7 +101,7 @@ export default function AlgoliaAutocomplete({
 
   return (
     <>
-      <div className={"algolia-autocomplete"} ref={autocompleteContainer} />
+      <div className={"algolia-autocomplete"} style={{backgroundColor: 'black'}} ref={autocompleteContainer} />
       {autocompleteSuggestionsComponent}
     </>
   );
