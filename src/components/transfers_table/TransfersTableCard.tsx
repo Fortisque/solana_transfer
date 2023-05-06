@@ -8,8 +8,6 @@ import TransfersTableHeader from "./TransfersTableHeader";
 import {
   algoliaUpdatedObjectIDsAtom,
   transferDialogStateAtom,
-  transferTableOrderAtom,
-  transferTableOrderByAtom,
 } from "./transferAtoms";
 import { updateNewRecordsIntoAlgolia } from "../../algolia/synchronizeAlgolia";
 import { processTransfersIntoRows } from "./processTransfersIntoRows";

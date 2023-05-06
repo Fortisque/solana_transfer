@@ -1,4 +1,4 @@
-import React, { ReactPortal } from "react";
+import { ReactPortal } from "react";
 import { createElement, Fragment, useEffect, useRef, useState } from "react";
 
 import { usePagination, useSearchBox } from "react-instantsearch-hooks";
@@ -11,7 +11,6 @@ import { BaseItem } from "@algolia/autocomplete-core";
 
 import "@algolia/autocomplete-theme-classic";
 import { createPortal } from "react-dom";
-import "../../../css/AlgoliaAutocomplete.css";
 import { hasPendingQueryOverrideAtom } from "../transferAtoms";
 import { useRecoilState } from "recoil";
 
@@ -101,7 +100,7 @@ export default function AlgoliaAutocomplete({
 
   return (
     <>
-      <div className={"algolia-autocomplete"} style={{backgroundColor: 'black'}} ref={autocompleteContainer} />
+      <div className={"algolia-autocomplete"} ref={autocompleteContainer} />
       {autocompleteSuggestionsComponent}
     </>
   );

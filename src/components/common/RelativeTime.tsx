@@ -1,4 +1,4 @@
-import { Box, Tooltip } from "@mui/material";
+import { Tooltip } from "@mui/material";
 
 type Props = { timeInMs: number | undefined | null; showDateTime: boolean };
 

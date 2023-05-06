@@ -42,36 +42,44 @@ function TransfersTableHeader({ searchClient }: Props) {
         </div>
       </Typography>
       <InstantSearchManager />
-      <AlgoliaAutocomplete
-        placeholder="Search transfers"
-        getSources={({ query }) => [
-          {
-            sourceId: "transfersID",
-            getItems() {
-              return getAlgoliaResults({
-                searchClient,
-                queries: [
-                  {
-                    indexName: ALGOLIA_INDEX_NAME,
-                    query,
-                    params: { hitsPerPage: 10 },
-                  },
-                ],
-              });
-            },
-            templates: {
-              item({ item }) {
-                return (
-                  <AutocompleteResultRow
-                    item={item as AlgoliaRow}
-                    query={query}
-                  />
-                );
+      <Box sx={{ display: "flex", alignItems: "center", paddingBottom: 2 }}>
+        <AlgoliaAutocomplete
+          placeholder="Search transfers"
+          getSources={({ query }) => [
+            {
+              sourceId: "transfersID",
+              getItems() {
+                return getAlgoliaResults({
+                  searchClient,
+                  queries: [
+                    {
+                      indexName: ALGOLIA_INDEX_NAME,
+                      query,
+                      params: { hitsPerPage: 10 },
+                    },
+                  ],
+                });
+              },
+              templates: {
+                item({ item }) {
+                  return (
+                    <AutocompleteResultRow
+                      item={item as AlgoliaRow}
+                      query={query}
+                    />
+                  );
+                },
               },
             },
-          },
-        ]}
-      />
+          ]}
+        />
+        <Tooltip
+          title="Autocomplete uses algolia, prioritizing showing matches again signature, but table uses a simple string contains from DB"
+          sx={{ marginLeft: 1, marginRight: 1 }}
+        >
+          <HelpOutline />
+        </Tooltip>
+      </Box>
       <Tooltip
         title={
           "Only shows transfers with a from address of the currently selected wallet" +

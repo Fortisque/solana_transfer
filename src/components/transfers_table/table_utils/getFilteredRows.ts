@@ -10,7 +10,7 @@ export default function getFilteredRows(
   }
   return rows.filter((r) => {
     return headCells.some(
-      (header) => r[header.id].toString().indexOf(searchQuery) != -1
+      (header) => r[header.id].toString().indexOf(searchQuery) !== -1
     );
   });
 }
